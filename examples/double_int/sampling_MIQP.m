@@ -2,9 +2,11 @@ clear
 clc
 close all
 
-addpath 'C:\Users\alp1a\pathlcp\pathmexw64'
-addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
+% addpath, %add pathlcp, yalmip, and mosek to MATLAB path
+% One example:
+% addpath 'C:\Users\alp1a\pathlcp\pathmexw64'
+% addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
+% addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
 
 %system parameters
 A = [1 1; 0 1];
