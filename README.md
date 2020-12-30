@@ -1,4 +1,4 @@
-Here, you can find the code for the conference paper 'Contact-Aware Controller design for Coplementarity Systems' from the conference HSCC2021.
+Here, you can find the code for the conference paper 'Stability Analysis of Complementarity Systems with Neural Network Controllers' from the conference HSCC2021.
 
 arXiv link: https://arxiv.org/abs/2011.07626
 
