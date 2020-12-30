@@ -2,28 +2,8 @@ clear all
 clc
 close all
 
-%addpath
-%addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-%addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-
-eps = 10^-3;
 load('sys_params.mat')
-
-% A = [1 1;0 1];
-% D = [0 0 0; 1 -1 0];
-% Ec = [0 1;0 -1;0 0];
-% Fc = [1 -1 1; -1 1 1; -1 -1 0];
-% c = [0;0;0.981];
-% H = [1;-1;0];
-% cons = [0;0];
-% B = [0;1];
-% 
-% sys = ss(A,B,zeros(2), zeros(2,1),1);
-% K = lqr(sys, 100*eye(2), 1*eye(1));
-% A = A - B*K;
-% Ec = Ec - H*K;
-
+eps = 10^-3;
 
 %extract dimension information
 n = size(A,2); %dimension of state space
@@ -213,4 +193,4 @@ cc2 = double(c2);
 cc3 = double(c3);
 
 %save the matrices
-save('system_param2.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')
+save('lyap_params.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')

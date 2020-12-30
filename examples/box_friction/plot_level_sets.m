@@ -2,9 +2,8 @@ clear all
 clc
 close all
 
-load('system_param2.mat')
+load('lyap_params.mat')
 load('sys_params.mat')
-addpath C:\Users\alp\Desktop\pathlcp
 
 %extract dimension information
 n = size(A,2); %dimension of state space
@@ -103,7 +102,4 @@ num_iter = 150;
 set(gca,'FontSize',40)
 xlabel('x_1', 'FontSize', 40)
 ylabel('x_2', 'FontSize', 40)
-
-
-
  
