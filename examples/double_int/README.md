@@ -1,6 +1,6 @@
 # Explanation
 
-One should run the following files in the given order to recreate the results. Start with `sampling_MIQP.m`.
+You can run the following files in the given order to recreate the results. Start with `sampling_MIQP.m`.
 
 `sampling_MIQP.m`: Creates 2000 samples using the function `mixed_integer_CS.m`. Saves this data as `data_training.mat`.
 
