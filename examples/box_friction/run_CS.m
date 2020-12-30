@@ -3,10 +3,6 @@ clc
 close all
 
 load('LCP_param.mat')
-%addpath 'C:\Users\alp1a\pathlcp\pathmexw64'
-%addpath 'C:\Users\alp1a\OneDrive\Masaüstü\lcp_solve_trial'
-addpath C:\Users\alp\Desktop\pathlcp
-
 load('system_param2.mat')
 
 Ts = 0.1;

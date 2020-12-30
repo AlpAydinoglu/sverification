@@ -3,7 +3,6 @@ clc
 close all
 
 load('LCP_param.mat')
-load('lyap_params.mat')
 
 c=c';
 k=-0.0147;
