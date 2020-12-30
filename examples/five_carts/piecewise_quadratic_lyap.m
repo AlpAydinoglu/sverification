@@ -2,14 +2,6 @@ clear all
 clc
 close all
 
-%addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-%addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-%addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-%addpath 'C:\Users\alp1a\OneDrive\Masaüstü\research\solvers\YALMIP-master\YALMIP-master'
-
-addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-
 eps = 10^-3;
 load('sys_params.mat')
 
@@ -23,7 +15,6 @@ P = sdpvar(n,n); Q = sdpvar(n,m); R = sdpvar(m,m); c1 = sdpvar(n,1); c2 = sdpvar
 
 %initalize the constraint set
 F = [];
-%F = [Q == 0, R == 0, c2 == 0];
 
 %define V and DV
 V = [P Q c1/2; Q' R c2/2; c1'/2 c2'/2 c3];
@@ -105,4 +96,4 @@ cc2 = double(c2);
 cc3 = double(c3);
 
 %save the matrices
-save('system_param2.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')
+save('lyap_params.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')

@@ -2,10 +2,8 @@ clear all
 clc
 close all
 
-%load('system_param.mat')
 load('sys_params.mat')
-load('system_param2.mat')
-addpath C:\Users\alp\Desktop\pathlcp
+load('lyap_params.mat')
 
 num_iter = 100;
 

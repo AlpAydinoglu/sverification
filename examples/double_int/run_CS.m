@@ -64,8 +64,3 @@ plot(t_lyap, mx','LineWidth', 4,'Color', [.7 .7 .7])
 xlabel('iteration(k)', 'FontSize', 40)
 ylabel('V(x_k, \lambda_k)', 'FontSize', 40)
 set(gca,'FontSize',40)
-
-
-z = cons;
-
-save('sys_params','A', 'D', 'Ec', 'Fc', 'c', 'z')
