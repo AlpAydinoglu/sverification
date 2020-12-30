@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}	
+\newtheorem{remarks}{Remarks}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}	
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}	
+\newtheorem{assumption}{Assumption}	
+\newtheorem{definition}{Definition}	
+\newtheorem{problem}{Problem}
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}
+
+
+\title{Optimal Control with Linear Complementarity Systems}
+\author{DAIR Lab}
+\date{University of Pennsylvania}
+
+\begin{document}
+	\maketitle
+	
+\section{Problem Formulation}
+
+Consider the linear complementarity system where
+$m$ is the number of contacts
+$n$ is the state dimension
+$k$ is the number of inputs \\
+\begin{align}
+\label{eq:CS_dynamics_d}
+& x_{t+1} = A x_t + B u_t + D \lambda_t + k, \\
+\label{eq:CP_d}
+& 0 \leq Ex_t + F \lambda_t + c \perp \lambda_t \geq 0,
+\end{align}
+where $x_t \in \mathbb{R}^n$ denotes the state of the system, $\lambda_t \in \mathbb{R}^m$ represents the contact forces, $u_t \in \mathbb{R}^k$ is the input applied to the system, and $w_t \in \mathbb{R}^n$ is the disturbance at time $t$.
+
+\begin{definition}(P-Matrix)
+	A matrix $F \in \mathbb{R}^{m \times m}$ is a P-matrix, if the determinant of all of its principal sub-matrices are positive; that is, $\text{det}(F_{\alpha \alpha}) > 0$ for all $\alpha \subseteq \{ 1, \ldots, m \} $.
+\end{definition}
+If $F$ is a P-matrix, then the solution set $\text{SOL}(q,F)$ is a singleton for any $q \in \mathbb{R}^m$ and also the dynamical system in \eqref{eq:CS_dynamics_d} is a piecewise linear dynamical system. Moreover, for any initial condition $x_0$, there is a unique trajectory that is well-defined for all $t \geq 0$.
+
+We want to solve the following optimization problem where \\
+\begin{equation}
+\label{eq:opt_original_d}
+\begin{aligned}
+\min_{x_t, \lambda_t, u_t} \quad & \sum_{t=0}^T x_t^T Q_t x_t + u_t^T R_t u_t  \\
+\textrm{s.t.} \quad &x_{t+1} = A x_t + B u_t + D \lambda_t + k, \; \; t = 0, \ldots, T-1,\\
+& E x_t + F \lambda_t + c \geq 0, \\
+& \lambda_t \geq 0, \\
+& \lambda_t^T (E x_t + F \lambda_t) = 0, \\
+& x_0 = x(0).
+\end{aligned}
+\end{equation}
+
+\section{ADMM}
+Consider $z = [x^T, \lambda^T, u^T]^T$ and \eqref{eq:opt_original_d} can be written as:
+
+\begin{equation}
+\begin{aligned}
+\min_{z, \delta} \quad & z^T Q z \\
+\textrm{s.t.} \quad & M_1 z = m_1,\\
+& M_2 z \leq m_2, \\
+& \delta^T M_3 \delta + \delta^T m_3 = 0, \\
+& z = \delta.
+\end{aligned}
+\end{equation}
+
+The augmented Lagrangian is given as
+\begin{equation*}
+	\mathcal{L}(z, \delta, w) = z^T Q z + \mathcal{I}_C(z) + \mathcal{I}_H (\delta) + \rho ( ||z - \delta + w||_2^2 - ||w||_2^2)
+\end{equation*}
+where $w$ is the scaled dual variable, $\rho$ is the penalty parameter, $C = \{ z : M_1 z = m_1,  M_2 z \leq m_2  \}$ and $H = \{ \delta : \delta^T M_3 \delta + \delta^T m_3 = 0  \}$.
+
+ADMM steps: (Initialize with $\delta^0 = \delta(0), w^0 = w(0)$)
+\begin{align*}
+	& z^{k+1} = \text{argmin}_z \mathcal{L}_\rho (z, \delta^k, w^k), \\
+	& \delta^{k+1} = \text{argmin}_\delta \mathcal{L}_\rho (z^{k+1}, \delta, w^k), \\
+	& w^{k+1} = w^k + z^{k+1} - x^{k+1}.
+\end{align*}
+
+\section{Mixed Integer Program}
+
+\begin{equation}
+\label{eq:opt_original_d}
+\begin{aligned}
+\min_{x_t, \lambda_t, u_t} \quad & \sum_{t=0}^T x_t^T Q_t x_t + u_t^T R_t u_t  \\
+\textrm{s.t.} \quad &x_{t+1} = A x_t + B u_t + D \lambda_t + k, \; \; t = 0, \ldots, T-1,\\
+& M_1 z \geq E x_t + F \lambda_t + c \geq 0, \\
+& M_2 (\mathbf{1} - z) \geq \lambda_t \geq 0, \\
+& z \in \{ 0,1  \}^m, \\
+& x_0 = x(0).
+\end{aligned}
+\end{equation}
+Here $z$ are the integers that take the value 0 or 1 and $M_1$ and $M_2$ are the big-M parameters. Both $M_1, M_2 \in \mathbb{R}^m$ are m-dimensional vectors. Similarly, $\mathbf{1} \in \mathbb{R}^m$ is a m-dimensional vector of ones.
+
+
+
+\end{document}
