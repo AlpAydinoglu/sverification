@@ -70,9 +70,9 @@ ineq1 = V - V_quad' * W * V_quad;
 ineq2 = -DV - DV_quad' * U * DV_quad - DV_quad2' * U_V2 * DV_quad2;
 ineq3 = -V - V_quad' * W2 * V_quad;
 
-ineq1 = ineq1 - bnd*t1;
+%ineq1 = ineq1 - bnd*t1;
 ineq2 = ineq2 - bnde*t3;
-ineq3 = ineq3 - bnd*t2;
+%ineq3 = ineq3 - bnd*t2;
 
 for i = 1:m
     ineq1 = ineq1 - tau{i}*Zc{i};

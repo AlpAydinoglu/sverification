@@ -20,7 +20,7 @@ import torch.optim as optim
 import scipy.io
 #from torch.autograd import Variable
 
-torch.manual_seed(1)
+torch.manual_seed(2)
 
 inputs = np.load('inputs_ARE.npy');
 
@@ -46,8 +46,6 @@ net = nn.Sequential(
         nn.ReLU(),
         nn.Linear(sz,sz,bias=True),
         nn.ReLU(),
-        #nn.Linear(sz,sz),
-        #nn.ReLU(),
         nn.Linear(sz,1,bias=False),
         )
 
@@ -87,43 +85,15 @@ n_states = 4
 n_contact = sz*n_layer
 
 
-# F = np.identity(( sz*n_layer ))
-# F[sz:sz+sz,0:sz] = -params[1].data.numpy()
-# #F[sz+sz: sz+sz+sz, 0+sz: sz+sz] = -params[4].data.numpy()
-
-# #c = np.zeros((sz*n_layer))
-# #c[0:sz] = -params[1].data.numpy()
-# #c[sz:sz+sz] = -params[3].data.numpy()
-# #c[sz+sz:sz+sz+sz] = -params[5].data.numpy()
-
-# D = np.zeros((n_input,sz*n_layer))
-# D[0,sz:sz+sz] = params[2].data.numpy()
-
-# #k = params[5].data.numpy()
-# k = 0
-
-# E   = np.zeros((sz*n_layer, n_states))
-# E[0:sz,:] = -params[0].data.numpy()
-
-# mdic = {"Fc": F, "c": c, "D": D, "k": k, "Ec": E }
-# scipy.io.savemat('LCP_param_2.mat', mdic)
-
 
 F = np.identity(( sz*n_layer ))
 F[sz:sz+sz,0:sz] = -params[2].data.numpy()
-#F[sz+sz: sz+sz+sz, 0+sz: sz+sz] = -params[4].data.numpy()
-
 c = np.zeros((sz*n_layer))
 c[0:sz] = -params[1].data.numpy()
 c[sz:sz+sz] = -params[3].data.numpy()
-#c[sz+sz:sz+sz+sz] = -params[5].data.numpy()
-
 D = np.zeros((n_input,sz*n_layer))
 D[0,sz:sz+sz] = params[4].data.numpy()
-
-#k = params[5].data.numpy()
 k = 0
-
 E   = np.zeros((sz*n_layer, n_states))
 E[0:sz,:] = -params[0].data.numpy()
 

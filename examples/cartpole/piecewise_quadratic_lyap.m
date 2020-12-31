@@ -2,15 +2,6 @@ clear all
 clc
 close all
 
-%addpath
-%addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-%addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-%addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-
-addpath 'C:\Users\alp1a\pathlcp\pathmexw64'
-addpath(genpath('C:\Users\alp1a\OneDrive\Masaüstü\research\YALMIP-master\YALMIP-master'))
-addpath 'C:\Program Files\Mosek\9.2\toolbox\R2015a'
-
 eps = 10^-3;
 load('sys_params.mat')
 
@@ -67,6 +58,7 @@ for i = 1:m
     INEQ1_MD{i} = sdpvar(1,1); F = [F, INEQ1_MD{i} >= 0];
     INEQ1_MDD{i} = sdpvar(1,1); F = [F, INEQ1_MDD{i} >= 0];
 end
+
 %(\lam) >= 0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i = 1:m
@@ -74,6 +66,7 @@ for i = 1:m
     INEQ2_MD{i} = sdpvar(1,1); F = [F, INEQ2_MD{i} >= 0];    
     INEQ2_MDD{i} = sdpvar(1,1); F = [F, INEQ2_MDD{i} >= 0];
 end
+
 %(\lam)^2 >= 0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i = 1:m
@@ -197,4 +190,4 @@ cc2 = double(c2);
 cc3 = double(c3);
 
 %save the matrices
-save('system_param.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')
+save('lyap_params.mat','PP','QQ','RR', 'cc1', 'cc2', 'cc3')

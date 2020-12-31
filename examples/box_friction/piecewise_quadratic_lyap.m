@@ -145,9 +145,9 @@ SET21 = sdpvar(1,1); F = [F, SET21 >= 0]; SET22 = sdpvar(1,1); F = [F, SET22 >= 
 alpha = sdpvar(1,1); F = [F, alpha >= 10];
 
 %inequalities
-ineq1 = V - eps * (x_basis' * x_basis) - SETT*SET21; 
-ineq2 = - Vdot - SETT*SET22 - eps * (x_basis' * x_basis);
-ineq3 = -V + alpha * (x_basis' * x_basis) - SETT * SET23; 
+ineq1 = V - eps * (x_basis' * x_basis); %- SETT*SET21; 
+ineq2 = - Vdot  - eps * (x_basis' * x_basis) - SETT*SET22;
+ineq3 = -V + alpha * (x_basis' * x_basis); %- SETT * SET23; 
 
 %add S-procedure terms
 for i = 1:m
