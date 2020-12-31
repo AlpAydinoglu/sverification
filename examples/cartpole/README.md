@@ -1,6 +1,6 @@
 # Explanation
 
-You can run the following files in the given order to recreate the results. Start with `sampling_MIQP.m`.
+You can run the following files in the given order to recreate the results. Start with `example.py`.
 
 `example.py`: Creates 5000 samples. Saves the samples as `states_ARE.npy` and `inputs_ARE.npy`.
 
