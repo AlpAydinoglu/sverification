@@ -25,7 +25,7 @@ Python3 is used for all of the examples with the following additional packages:
 
 `scipy.io`: https://docs.scipy.org/doc/scipy/reference/tutorial/io.html
 
-`numpy`, `pytorch`, `scipy.io` will need to be imported for the examples to run.
+`numpy`, `pytorch`, `scipy.io` should be imported for the examples to run.
 
 ## Functionality
 
