@@ -29,7 +29,7 @@ Python3 is used for all of the examples with the following additional packages:
 
 ## Functionality
 
-The library can be used to verify stability of linear complementarity systems.
+The library can be used to verify stability of linear complementarity systems with neural network controllers.
 
 ## Examples
 
