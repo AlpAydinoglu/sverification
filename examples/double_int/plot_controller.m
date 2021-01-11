@@ -1,3 +1,5 @@
+%%%Plots the neural network policy (Figure 3). (requires LCP_param.mat)
+
 clear all
 clc
 close all

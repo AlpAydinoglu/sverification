@@ -1,10 +1,11 @@
+%%%Plots envelopes for 1000 trajectories with corresponding Lyapunov functions (Figure 10). (requires sys_params.mat and lyap_params.mat)
+
 clear all
 clc
 close all
 
 load('sys_params.mat')
 load('lyap_params.mat')
-
 rng(1)
 
 %extract dimension information
@@ -18,7 +19,9 @@ num_iter = 80;
 rng(1)
 
 for i = 1:trials
-    
+    if mod(i,10) == 0
+        i
+    end
     xh{i} = zeros(n,num_iter);
     lamh{i} = zeros(m, num_iter);
     xh{i}(:,1) = 20 * (rand(n,1) - 0.5);

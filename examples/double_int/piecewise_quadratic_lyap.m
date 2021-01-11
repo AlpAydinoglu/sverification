@@ -1,3 +1,6 @@
+%%%Uses the complementarity representation of the closed-loop system (sys_params.mat) 
+%%%and finds a Lyapunov function as in Section 4 (Equation 11), then saves the Lyapunov function parameters as lyap_params.mat
+
 clear all
 clc
 close all

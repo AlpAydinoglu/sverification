@@ -1,3 +1,6 @@
+%%%Uses the complementarity representation of the closed-loop system (sys_params.mat) 
+%%%and finds a Lyapunov function as in Section 4 (Equation 11), then saves the Lyapunov function parameters as lyap_params.mat
+
 clear all
 clc
 close all
@@ -182,8 +185,7 @@ Fe = sdpvar(length(t));
 f_sos = t'*Fe*t;
 F = [F, coefficients(ineq3-f_sos,[x_basis' lam_basis']) == 0, Fe>=0];
 
-
-options = sdpsettings('solver','mosek','dualize',1);
+options = sdpsettings('solver','mosek','debug', 1 , 'dualize',1);
 optimize(F, alpha , options)
 PP = double(P);
 QQ = double(Q);

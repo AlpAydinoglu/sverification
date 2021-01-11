@@ -1,3 +1,5 @@
+%%%Plots envelopes for 1000 trajectories with corresponding Lyapunov functions (Figure 13). (requires sys_params.mat and lyap_params.mat)
+
 clear all
 clc
 close all

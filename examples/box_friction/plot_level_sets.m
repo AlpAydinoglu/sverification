@@ -1,3 +1,5 @@
+%%%Plots the sublevel sets of the Lyapunov function (Figure 9) with few trajectories on top. (requires sys_params.mat and lyap_params.mat)
+
 clear all
 clc
 close all

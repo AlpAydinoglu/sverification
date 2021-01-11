@@ -1,5 +1,7 @@
 Here, you can find the code for the conference paper 'Stability Analysis of Complementarity Systems with Neural Network Controllers' from the conference HSCC 2021.
 
+arXiv link: https://arxiv.org/abs/2011.07626
+
 # Dependencies
 
 In order to run the examples, both MATLAB and Python are required.

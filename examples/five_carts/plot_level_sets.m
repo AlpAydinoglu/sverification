@@ -1,3 +1,5 @@
+%%%Plots the sublevel sets of the Lyapunov function (Figure 12) with few trajectories on top. (requires sys_params.mat and lyap_params.mat)
+
 clear all
 clc
 close all
@@ -22,7 +24,6 @@ for i = 1:size(X1,1)
      for j = 1:size(X1,2)
          a = X1(i,j); b = X2(i,j);
          x = [ 0; a; 0; b; 0];  
-         %x = [0; 0; X1(i,j); X2(i,j)];
          lam = pathlcp(Fc,Ec*x + c); 
           x_basis = x; lam_basis = lam;
            V(i,j) = x_basis' * PP * x_basis + 2 * x_basis' * QQ  * lam_basis ...

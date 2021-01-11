@@ -1,9 +1,15 @@
-% clear all
-% clc
-% close all
+%%%Uses the LCP paramaterization of the NN (LCP_param.mat) and creates the complementarity representation of the system (sys_params.mat) as in Section 3.2.
 
+clear all
+clc
+close all
+
+%load LCP parameterization of the NN
 load('LCP_param.mat')
 
+%construct the complementarity model
+
+%physical system parameters
 mc = 1;
 mp = 1;
 L = 1;
@@ -22,21 +28,21 @@ Ec2 = [-1 L 0 0; 1 -L 0 0];
 Fc2 = [1/k_1 0; 0 1/k_2];
 c2 = [d;d];
 
+%LQR controller parameters
 sys = ss(A2,B2,zeros(4), zeros(4,1),1);
 K = lqr(sys, 10*eye(4), eye(1));
 A2 = A2 - B2*K;
 
-%save values
+%holder for system parameters
 Ecs = Ec;
 Fcs = Fc;
 cs = c';
 Ds = D;
-
-%check x=0
 lam0 = pathlcp(Fcs,Ecs*zeros(4,1) + cs);
 k = -Ds*lam0;
 
-%system parameters
+%Combine the physical system and LCP parameterization of the NN as in
+%Section 3.2
 c=c';
 k = double(k);
 Ec = [Ec; Ec2];
@@ -46,24 +52,5 @@ D = [B2*D D2];
 A = A2;
 cons = B2*k;
 
-%extract dimension information
-n = size(A,2); %dimension of state space
-m = size(D,2); %number of contacts
-
-rng(4)
-num_iter = 500;
-x = zeros(n,num_iter);
-lam = zeros(m, num_iter);
-%initial condition
-x(:,1) = 3 * (rand(n,1) - 0.5);
-
-%check if x=0 is an equilibrium (sanity check)
-for i = 1:num_iter
-    lam(:,i) = pathlcp(Fc,Ec*x(:,i) + c);
-    x(:,i+1) = A*x(:,i) + D*lam(:,i) + cons;
-end 
-% figure
-% plot(0:num_iter, x, 'LineWidth', 2)
-
-%save system values
+%save the complementarity representation
 save('sys_params','A', 'D', 'Ec', 'Fc', 'c', 'cons')
