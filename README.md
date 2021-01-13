@@ -1,4 +1,4 @@
-Here, you can find the code for the conference paper 'Stability Analysis of Complementarity Systems with Neural Network Controllers' from the conference HSCC 2021.
+Here, you can find the code for the paper 'Stability Analysis of Complementarity Systems with Neural Network Controllers' from the conference HSCC 2021.
 
 # Dependencies
 
