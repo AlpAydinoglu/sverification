@@ -57,7 +57,7 @@ def Discrete_CartPole():
     D = np.array([[0, 0],
                   [0, 0],
                   [0, 0],
-                  [-1 / (L * mp), 1 / (L * mp)]])
+                  [1 / (L * mp), -1 / (L * mp)]])
     # D = np.zeros((n,m))
     
     #A_d = np.identity(A.shape[0]) + Ts*A
